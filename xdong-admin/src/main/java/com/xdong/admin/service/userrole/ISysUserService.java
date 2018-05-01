@@ -1,5 +1,6 @@
 package com.xdong.admin.service.userrole;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -55,4 +56,8 @@ public interface ISysUserService extends IService<SysUser> {
      * @throws Exception
      */
     Map<String, Object> updatePersonalImg(MultipartFile file, String avatar_data, Long userId) throws Exception;
+    
+    List<SysUser> getSysUserListById(Long deptId);
+    
+    void reload();
 }

@@ -39,6 +39,8 @@ import org.activiti.editor.language.json.converter.util.CollectionUtils;
 import org.apache.commons.lang.ArrayUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -262,6 +264,19 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         deleteBatchIds(Arrays.asList(userIds));
         sysUserRoleService.removeBatchByUserId(userIds);
         return true;
+    }
+
+    @Cacheable(value = "deptUserCache")
+    @Override
+    public List<SysUser> getSysUserListById(Long deptId) {
+        System.out.println("select data from db.....");
+        EntityWrapper<SysUser> wrapper = new EntityWrapper<SysUser>();
+        wrapper.eq("dept_id", deptId);
+        return selectList(wrapper);
+    }
+
+    @CacheEvict(value = "deptUserCache", allEntries = true) // 清空 accountCache 缓存
+    public void reload() {
     }
 
 }
