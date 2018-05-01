@@ -1,6 +1,5 @@
 package com.xdong.controller.userrole;
 
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +29,8 @@ import com.xdong.dal.userrole.domain.SysUser;
 import com.xdong.dto.SysUserDto;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
+
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.util.Arrays;
