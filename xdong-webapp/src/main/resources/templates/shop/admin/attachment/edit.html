@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="id" name="id" th:value="${attachment.id}"  type="hidden">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">文件名称：</label>
+								<div class="col-sm-8">
+									<input id="name" name="name" th:value="${attachment.name}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">附件类型：</label>
+								<div class="col-sm-8">
+									<input id="ftype" name="ftype" th:value="${attachment.ftype}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">状态：</label>
+								<div class="col-sm-8">
+									<input id="status" name="status" th:value="${attachment.status}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">排序：</label>
+								<div class="col-sm-8">
+									<input id="sort" name="sort" th:value="${attachment.sort}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">文件路径：</label>
+								<div class="col-sm-8">
+									<input id="path" name="path" th:value="${attachment.path}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">原文件名：</label>
+								<div class="col-sm-8">
+									<input id="oname" name="oname" th:value="${attachment.oname}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">描述：</label>
+								<div class="col-sm-8">
+									<input id="details" name="details" th:value="${attachment.details}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">上传者：</label>
+								<div class="col-sm-8">
+									<input id="manager" name="manager" th:value="${attachment.manager}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">所属商品：</label>
+								<div class="col-sm-8">
+									<input id="goods" name="goods" th:value="${attachment.goods}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">所属文章：</label>
+								<div class="col-sm-8">
+									<input id="document" name="document" th:value="${attachment.document}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">点击此附件后转向URL：</label>
+								<div class="col-sm-8">
+									<input id="url" name="url" th:value="${attachment.url}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">上传时间：</label>
+								<div class="col-sm-8">
+									<input id="ctime" name="ctime" th:value="${attachment.ctime}" class="form-control" type="text">
+								</div>
+							</div>
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/shop/attachment/edit.js">
+	</script>
+</body>
+</html>

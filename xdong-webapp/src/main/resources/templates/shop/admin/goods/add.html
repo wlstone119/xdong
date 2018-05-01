@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">语言：</label>
+								<div class="col-sm-8">
+									<input id="locale" name="locale" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">商品分类：</label>
+								<div class="col-sm-8">
+									<input id="category" name="category" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">商品类型：</label>
+								<div class="col-sm-8">
+									<input id="gstype" name="gstype" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">商品名称：</label>
+								<div class="col-sm-8">
+									<input id="name" name="name" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">商品编号：</label>
+								<div class="col-sm-8">
+									<input id="sn" name="sn" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">商品条形码：</label>
+								<div class="col-sm-8">
+									<input id="barcode" name="barcode" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">关键词：</label>
+								<div class="col-sm-8">
+									<input id="keywords" name="keywords" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">品牌：</label>
+								<div class="col-sm-8">
+									<input id="brand" name="brand" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">简介：</label>
+								<div class="col-sm-8">
+									<input id="intro" name="intro" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">详细介绍：</label>
+								<div class="col-sm-8">
+									<input id="details" name="details" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">单价：</label>
+								<div class="col-sm-8">
+									<input id="price" name="price" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">市场价：</label>
+								<div class="col-sm-8">
+									<input id="mprice" name="mprice" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">成本价：</label>
+								<div class="col-sm-8">
+									<input id="cprice" name="cprice" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">重量：</label>
+								<div class="col-sm-8">
+									<input id="weight" name="weight" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">免费送货：</label>
+								<div class="col-sm-8">
+									<input id="freeshipping" name="freeshipping" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">赠送积分：</label>
+								<div class="col-sm-8">
+									<input id="points" name="points" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">库存：</label>
+								<div class="col-sm-8">
+									<input id="inventory" name="inventory" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">参加促销：</label>
+								<div class="col-sm-8">
+									<input id="promote" name="promote" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">创建时间：</label>
+								<div class="col-sm-8">
+									<input id="ctime" name="ctime" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">修改时间：</label>
+								<div class="col-sm-8">
+									<input id="utime" name="utime" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">状态：</label>
+								<div class="col-sm-8">
+									<input id="status" name="status" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">排序：</label>
+								<div class="col-sm-8">
+									<input id="csort" name="csort" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">录入者：</label>
+								<div class="col-sm-8">
+									<input id="manager" name="manager" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">META_KEYWORDS：</label>
+								<div class="col-sm-8">
+									<input id="mkeywords" name="mkeywords" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">META_DESCRIPTION：</label>
+								<div class="col-sm-8">
+									<input id="mdescription" name="mdescription" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">访问量：</label>
+								<div class="col-sm-8">
+									<input id="vistor" name="vistor" class="form-control" type="text">
+								</div>
+							</div>
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/shop/goods/add.js">
+	</script>
+</body>
+</html>
