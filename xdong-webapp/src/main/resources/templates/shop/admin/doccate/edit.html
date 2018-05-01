@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="id" name="id" th:value="${doccate.id}"  type="hidden">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">父ID：</label>
+								<div class="col-sm-8">
+									<input id="pid" name="pid" th:value="${doccate.pid}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">路径：</label>
+								<div class="col-sm-8">
+									<input id="nodepath" name="nodepath" th:value="${doccate.nodepath}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">类型：</label>
+								<div class="col-sm-8">
+									<input id="nodetype" name="nodetype" th:value="${doccate.nodetype}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">语言：</label>
+								<div class="col-sm-8">
+									<input id="locale" name="locale" th:value="${doccate.locale}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">图像：</label>
+								<div class="col-sm-8">
+									<input id="attachment" name="attachment" th:value="${doccate.attachment}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">名称：</label>
+								<div class="col-sm-8">
+									<input id="name" name="name" th:value="${doccate.name}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">描述：</label>
+								<div class="col-sm-8">
+									<input id="details" name="details" th:value="${doccate.details}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">排序：</label>
+								<div class="col-sm-8">
+									<input id="csort" name="csort" th:value="${doccate.csort}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">META_KEYWORDS：</label>
+								<div class="col-sm-8">
+									<input id="mkeywords" name="mkeywords" th:value="${doccate.mkeywords}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">META_DESCRIPTION：</label>
+								<div class="col-sm-8">
+									<input id="mdescription" name="mdescription" th:value="${doccate.mdescription}" class="form-control" type="text">
+								</div>
+							</div>
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/shop/doccate/edit.js">
+	</script>
+</body>
+</html>

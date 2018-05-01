@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xdong.dal.blog.dao.BlogContentMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xdong.dal.blog.domain.BlogContent">
+        <id column="cid" property="cid" />
+        <result column="title" property="title" />
+        <result column="slug" property="slug" />
+        <result column="created" property="created" />
+        <result column="modified" property="modified" />
+        <result column="content" property="content" />
+        <result column="type" property="type" />
+        <result column="tags" property="tags" />
+        <result column="categories" property="categories" />
+        <result column="hits" property="hits" />
+        <result column="comments_num" property="commentsNum" />
+        <result column="allow_comment" property="allowComment" />
+        <result column="allow_ping" property="allowPing" />
+        <result column="allow_feed" property="allowFeed" />
+        <result column="status" property="status" />
+        <result column="author" property="author" />
+        <result column="gtm_create" property="gtmCreate" />
+        <result column="gtm_modified" property="gtmModified" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        cid, title, slug, created, modified, content, type, tags, categories, hits, comments_num AS commentsNum, allow_comment AS allowComment, allow_ping AS allowPing, allow_feed AS allowFeed, status, author, gtm_create AS gtmCreate, gtm_modified AS gtmModified
+    </sql>
+
+</mapper>
