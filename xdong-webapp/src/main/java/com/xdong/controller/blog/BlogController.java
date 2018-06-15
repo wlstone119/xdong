@@ -6,14 +6,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.xdong.admin.service.blog.IBlogContentService;
 import com.xdong.common.controller.BaseController;
 import com.xdong.common.utils.DateUtils;
 import com.xdong.common.utils.PageUtils;
 import com.xdong.common.utils.Query;
-import com.xdong.dal.activiti.domain.Salary;
 import com.xdong.dal.blog.domain.BlogContent;
 
 import java.util.HashMap;
@@ -28,7 +26,9 @@ public class BlogController extends BaseController {
     IBlogContentService bContentService;
 
     @GetMapping()
-    String blog() {
+    String blog(@RequestParam Map<String, Object> params, Model model) {
+        PageUtils pageUtils = opentList(params);
+        model.addAttribute("result", pageUtils);
         return "blog/index/main";
     }
 

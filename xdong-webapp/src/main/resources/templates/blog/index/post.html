@@ -1,47 +1,394 @@
-<!DOCTYPE html>
-<html>
-<meta charset="utf-8">
-<head th:include="blog/index/include_blog::header"></head>
-<body>
-	<nav th:include="blog/index/include_blog::nav"  class="navbar navbar-default navbar-custom navbar-fixed-top" ></nav>
-	<!-- Page Header -->
-	<header class="intro-header"
-		style="background-image: url('/img/blog/post-bg.jpg')">
+<html layout:decorator="/common/layout/blog_layout">
+<div class="page-wrapper" layout:fragment="content">
+	<!-- ================ -->
+	<div class="page-intro">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-					<div class="post-heading">
-						<h1 th:text="${bContent.title}"></h1>
-						<span class="meta">作者 <a href="#"
-							th:text="${bContent.author}"></a>&nbsp;&nbsp;<a href="#"
-							th:text="${gtmModified}"></a>
-						</span>
-					</div>
+				<div class="col-md-12">
+					<ol class="breadcrumb">
+						<li><i class="fa fa-home pr-10"></i><a href="/blog">Home</a></li>
+						<li class="active">Blogpost</li>
+					</ol>
 				</div>
 			</div>
 		</div>
-	</header>
+	</div>
+	<!-- page-intro end -->
 
-	<!-- Post Content -->
-	<article>
+	<!-- main-container start -->
+	<!-- ================ -->
+	<section class="main-container">
+
 		<div class="container">
-			<div class="col-sm-11">
-				<div id="content" class="summernote"></div>
-			</div>
+			<div class="row">
 
+				<!-- main start -->
+				<!-- ================ -->
+				<div class="main col-md-8">
+
+					<!-- page-title start -->
+					<!-- ================ -->
+					<h2 class="page-title" th:text="${bContent.title}"></h2>
+					<!-- page-title end -->
+
+					<!-- blogpost start -->
+					<article class="clearfix blogpost full">
+						<div class="blogpost-body">
+							<div class="side">
+								<div class="post-info">
+									<span class="day" th:text="${gtmModified}">12</span> <span
+										class="month" th:text="${gtmModified}"></span>
+								</div>
+								<div id="affix">
+									<span class="share">Share This</span>
+									<div id="share"></div>
+								</div>
+							</div>
+							<div class="blogpost-content">
+								<header>
+									<div class="submitted">
+										<i class="fa fa-user pr-5"></i> by <a href="#"
+											th:text="${bContent.author}"></a>
+									</div>
+								</header>
+								<!-- 
+								<div class="owl-carousel content-slider-with-controls">
+									<div class="overlay-container">
+										<img src="/s/images/blog-1.jpg" alt=""> <a
+											href="/s/images/blog-1.jpg" class="popup-img overlay"
+											title="image title"><i class="fa fa-search-plus"></i></a>
+									</div>
+									<div class="overlay-container">
+										<img src="/s/images/blog-2.jpg" alt=""> <a
+											href="/s/images/blog-2.jpg" class="popup-img overlay"
+											title="image title"><i class="fa fa-search-plus"></i></a>
+									</div>
+									<div class="overlay-container">
+										<img src="/s/images/blog-3.jpg" alt=""> <a
+											href="/s/images/blog-3.jpg" class="popup-img overlay"
+											title="image title"><i class="fa fa-search-plus"></i></a>
+									</div>
+								</div>
+								 -->
+								<p id="content" class="summernote"></p>
+							</div>
+						</div>
+						<footer class="clearfix">
+							<ul class="links pull-left">
+								<li><i class="fa fa-comment-o pr-5"></i> <a href="#">22
+										comments</a> |</li>
+								<li><i class="fa fa-tags pr-5"></i> <a href="#">tag 1</a>,
+									<a href="#">tag 2</a>, <a href="#">long tag 3</a></li>
+							</ul>
+						</footer>
+					</article>
+					<!-- blogpost end -->
+
+					<!-- comments start -->
+					<div class="comments">
+						<h2 class="title">There are 3 comments</h2>
+
+						<!-- comment start -->
+						<div class="comment clearfix">
+							<div class="comment-avatar">
+								<img src="/s/images/avatar.jpg" alt="avatar">
+							</div>
+							<div class="comment-content">
+								<h3>Comment title</h3>
+								<div class="comment-meta">
+									By <a href="#">admin</a> | Today, 12:31
+								</div>
+								<div class="comment-body clearfix">
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
+										elit, sed do eiusmod tempor incididunt ut labore et dolore
+										magna aliqua. Ut enim ad minim veniam, quis nostrud
+										exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+									<a href="blog-post.html" class="btn btn-gray more pull-right"><i
+										class="fa fa-reply"></i> Reply</a>
+								</div>
+							</div>
+
+							<!-- comment start -->
+							<div class="comment clearfix">
+								<div class="comment-avatar">
+									<img src="/s/images/avatar.jpg" alt="avatar">
+								</div>
+								<div class="comment-content clearfix">
+									<h3>Comment title</h3>
+									<div class="comment-meta">
+										By <a href="#">admin</a> | Today, 12:31
+									</div>
+									<div class="comment-body">
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing
+											elit, sed do eiusmod tempor incididunt ut labore et dolore
+											magna aliqua. Ut enim ad minim veniam, quis nostrud
+											exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+										<a href="blog-post.html" class="btn btn-gray more pull-right"><i
+											class="fa fa-reply"></i> Reply</a>
+									</div>
+								</div>
+							</div>
+							<!-- comment end -->
+
+						</div>
+						<!-- comment end -->
+
+						<!-- comment start -->
+						<div class="comment clearfix">
+							<div class="comment-avatar">
+								<img src="/s/images/avatar.jpg" alt="avatar">
+							</div>
+							<div class="comment-content clearfix">
+								<h3>Comment title</h3>
+								<div class="comment-meta">
+									By <a href="#">admin</a> | Today, 12:31
+								</div>
+								<div class="comment-body">
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
+										elit, sed do eiusmod tempor incididunt ut labore et dolore
+										magna aliqua. Ut enim ad minim veniam, quis nostrud
+										exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+									<a href="blog-post.html" class="btn btn-gray more pull-right"><i
+										class="fa fa-reply"></i> Reply</a>
+								</div>
+							</div>
+						</div>
+						<!-- comment end -->
+
+					</div>
+					<!-- comments end -->
+
+					<!-- comments form start -->
+					<div class="comments-form">
+						<h2 class="title">Add your comment</h2>
+						<form role="form" id="comment-form">
+							<div class="form-group has-feedback">
+								<label for="name4">Name</label> <input type="text"
+									class="form-control" id="name4" placeholder="" name="name4"
+									required> <i class="fa fa-user form-control-feedback"></i>
+							</div>
+							<div class="form-group has-feedback">
+								<label for="subject4">Subject</label> <input type="text"
+									class="form-control" id="subject4" placeholder=""
+									name="subject4" required> <i
+									class="fa fa-pencil form-control-feedback"></i>
+							</div>
+							<div class="form-group has-feedback">
+								<label for="message4">Message</label>
+								<textarea class="form-control" rows="8" id="message4"
+									placeholder="" name="message4" required></textarea>
+								<i class="fa fa-envelope-o form-control-feedback"></i>
+							</div>
+							<input type="submit" value="Submit" class="btn btn-default">
+						</form>
+					</div>
+					<!-- comments form end -->
+
+				</div>
+				<!-- main end -->
+
+				<!-- sidebar start -->
+				<aside class="col-md-3 col-md-offset-1">
+					<div class="sidebar">
+						<div class="block clearfix">
+							<h3 class="title">Sidebar menu</h3>
+							<div class="separator"></div>
+							<nav>
+								<ul class="nav nav-pills nav-stacked">
+									<li><a href="index.html">Home</a></li>
+									<li class="active"><a href="blog-right-sidebar.html">Blog</a></li>
+									<li><a href="portfolio-3col.html">Portfolio</a></li>
+									<li><a href="page-about.html">About</a></li>
+									<li><a href="page-contact.html">Contact</a></li>
+								</ul>
+							</nav>
+						</div>
+						<div class="block clearfix">
+							<h3 class="title">Latest tweets</h3>
+							<div class="separator"></div>
+							<ul class="tweets">
+								<li><i class="fa fa-twitter"></i>
+									<p>
+										<a href="#">@lorem</a> ipsum dolor sit amet, consectetur
+										adipisicing elit. Mollitia, aliquid, et molestias nesciunt <a
+											href="#">http://t.co/dzLEYGeEH9</a>.
+									</p> <span>16 hours ago</span></li>
+								<li><i class="fa fa-twitter"></i>
+									<p>
+										<a href="#">@lorem</a> ipsum dolor sit amet, consectetur
+										adipisicing elit. Mollitia, aliquid, et molestias nesciunt <a
+											href="#">http://t.co/dzLEYGeEH9</a>.
+									</p> <span>16 hours ago</span></li>
+							</ul>
+						</div>
+						<div class="block clearfix">
+							<h3 class="title">Featured Post</h3>
+							<div class="separator"></div>
+							<div class="image-box">
+								<div class="overlay-container">
+									<img src="/s/images/blog-sidebar.jpg" alt="">
+									<div class="overlay">
+										<div class="overlay-links">
+											<a href="blog-post.html"><i class="fa fa-link"></i></a> <a
+												href="/s/images/blog-sidebar.jpg" class="popup-img-single"
+												title="image title"><i class="fa fa-search-plus"></i></a>
+										</div>
+									</div>
+								</div>
+								<div class="image-box-body">
+									<h3 class="title">
+										<a href="blog-post.html">Post Title</a>
+									</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
+										elit...</p>
+									<a href="blog-post.html" class="link"><span>Read
+											More</span></a>
+								</div>
+							</div>
+						</div>
+						<div class="block clearfix">
+							<h3 class="title">Text Sample</h3>
+							<div class="separator"></div>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+								Dignissimos, nemo, necessitatibus, expedita voluptate esse ipsam
+								aliquid blanditiis maxime sequi veniam suscipit atque sapiente
+								cum voluptatum quos mollitia laborum? Esse, officia!</p>
+						</div>
+						<div class="block clearfix">
+							<h3 class="title">Testimonial</h3>
+							<div class="separator"></div>
+							<blockquote class="margin-clear">
+								<p>Design is not just what it looks like and feels like.
+									Design is how it works.</p>
+								<footer>
+									<cite title="Source Title">Steve Jobs </cite>
+								</footer>
+							</blockquote>
+							<blockquote class="margin-clear">
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+									Dignissimos dolorem.</p>
+								<footer>
+									<cite title="Source Title">Steve Doe </cite>
+								</footer>
+							</blockquote>
+						</div>
+						<div class="block clearfix">
+							<h3 class="title">Portfolio</h3>
+							<div class="separator"></div>
+							<div class="gallery row">
+								<div class="gallery-item col-xs-4">
+									<div class="overlay-container">
+										<img src="/s/images/gallery-1.jpg" alt=""> <a
+											href="portfolio-item.html" class="overlay small"> <i
+											class="fa fa-link"></i>
+										</a>
+									</div>
+								</div>
+								<div class="gallery-item col-xs-4">
+									<div class="overlay-container">
+										<img src="/s/images/gallery-2.jpg" alt=""> <a
+											href="portfolio-item.html" class="overlay small"> <i
+											class="fa fa-link"></i>
+										</a>
+									</div>
+								</div>
+								<div class="gallery-item col-xs-4">
+									<div class="overlay-container">
+										<img src="/s/images/gallery-3.jpg" alt=""> <a
+											href="portfolio-item.html" class="overlay small"> <i
+											class="fa fa-link"></i>
+										</a>
+									</div>
+								</div>
+								<div class="gallery-item col-xs-4">
+									<div class="overlay-container">
+										<img src="/s/images/gallery-4.jpg" alt=""> <a
+											href="portfolio-item.html" class="overlay small"> <i
+											class="fa fa-link"></i>
+										</a>
+									</div>
+								</div>
+								<div class="gallery-item col-xs-4">
+									<div class="overlay-container">
+										<img src="/s/images/gallery-5.jpg" alt=""> <a
+											href="portfolio-item.html" class="overlay small"> <i
+											class="fa fa-link"></i>
+										</a>
+									</div>
+								</div>
+								<div class="gallery-item col-xs-4">
+									<div class="overlay-container">
+										<img src="/s/images/gallery-6.jpg" alt=""> <a
+											href="portfolio-item.html" class="overlay small"> <i
+											class="fa fa-link"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="block clearfix">
+							<h3 class="title">Tags</h3>
+							<div class="separator"></div>
+							<div class="tags-cloud">
+								<div class="tag">
+									<a href="#">energy</a>
+								</div>
+								<div class="tag">
+									<a href="#">business</a>
+								</div>
+								<div class="tag">
+									<a href="#">food</a>
+								</div>
+								<div class="tag">
+									<a href="#">fashion</a>
+								</div>
+								<div class="tag">
+									<a href="#">finance</a>
+								</div>
+								<div class="tag">
+									<a href="#">culture</a>
+								</div>
+								<div class="tag">
+									<a href="#">health</a>
+								</div>
+								<div class="tag">
+									<a href="#">sports</a>
+								</div>
+								<div class="tag">
+									<a href="#">life style</a>
+								</div>
+								<div class="tag">
+									<a href="#">books</a>
+								</div>
+							</div>
+						</div>
+						<div class="block clearfix">
+							<form role="search">
+								<div class="form-group has-feedback">
+									<input type="text" class="form-control" placeholder="Search">
+									<i class="fa fa-search form-control-feedback"></i>
+								</div>
+							</form>
+						</div>
+					</div>
+				</aside>
+				<!-- sidebar end -->
+
+			</div>
 		</div>
-	</article>
-	<hr>
-	<div th:include="blog/index/include_blog::footer"></div>
-	<script type="text/javascript" th:inline="javascript">
-		$().ready(function() {
-			$('.summernote').summernote({
-				lang : 'zh-CN'
-			});
-			var content = /*[[${bContent.content}]]*/
-			$('#content').code(content);
-			$('.summernote').destroy();
+	</section>
+	<!-- main-container end -->
+</div>
+<head>
+<script type="text/javascript" th:inline="javascript">
+	$().ready(function() {
+		$('.summernote').summernote({
+			lang : 'zh-CN'
 		});
-	</script>
-</body>
+		var content = /*[[${bContent.content}]]*/
+		$('#content').code(content);
+		$('.summernote').destroy();
+	});
+</script>
+</head>
 </html>

@@ -16,7 +16,8 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 
 /**
- * Created by PrimaryKey on 17/2/4.
+ * 类DruidDBConfig.java的实现描述：TODO 类实现描述 
+ * @author wanglei 2018年6月15日 下午5:21:24
  */
 @SuppressWarnings("AlibabaRemoveCommentedCode")
 @Configuration

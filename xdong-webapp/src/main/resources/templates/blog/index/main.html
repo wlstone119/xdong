@@ -1,85 +1,85 @@
-<!DOCTYPE html>
-<html>
-<meta charset="utf-8">
-<head th:include="blog/index/include_blog::header"></head>
-<body>
-	<nav th:include="blog/index/include_blog::nav"  class="navbar navbar-default navbar-custom navbar-fixed-top" ></nav>
-	<header class="intro-header"
-		style="background-image: url('/img/blog/home-bg.jpg')">
+<html layout:decorator="/common/layout/blog_layout">
+<div class="page-wrapper" layout:fragment="content">
+	<div class="page-intro">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-					<div class="site-heading">
-						<h1>Boot Blog</h1>
-						<span class="subheading">boot 博客</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
-
-	<!-- Main Content -->
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-				<div id="incomeNum"></div>
-				<div class="clearfix">
-					<p id="flagLoaded" style="display: none; text-align: center;">已全部加载</p>
-					<a id="flagLoad" style="display: none;" class="btn btn-secondary float-right" 
-						href="javascript:void(0)" onclick="nextPage()">更早 &rarr;</a>
+				<div class="col-md-12">
+					<ol class="breadcrumb">
+						<li><i class="fa fa-home pr-10"></i><a href="index.html">Home</a></li>
+						<li class="active">Blog</li>
+					</ol>
 				</div>
 			</div>
 		</div>
 	</div>
-	</body>
-	<div th:include="blog/index/include_blog::footer"></div>
-	<script type="text/javascript">
-		var limit = 10;
-		var currentPage = 0;
-		var total;
-		$(function(){
-			bindList(0);
+	<section class="main-container">
 
-		});
-
-		function nextPage() {
-			bindList(currentPage * limit)
-		}
-		function bindList(offset) {
-			$
-				.ajax({
-					url : 'blog/open/list?type=article&limit=10&offset=' + offset,
-					method : 'get',
-					dataType : 'json',
-					success : function(data) {
-						var rows = data.rows;
-						total = data.total;
-						var htmlText = "";
-						for (i = 0; i < rows.length; i++) {
-							htmlText += '<div class="post-preview">';
-							htmlText += '<a href="/blog/open/post/' + rows[i].cid + '">';
-							htmlText += '<h2 class="post-title">';
-							htmlText += rows[i].title;
-							htmlText += '</h2>';
-							htmlText += '</a>';
-							htmlText += '<p class="post-meta">作者：<a href="#">'
-								+ rows[i].author
-								+ '</a> &nbsp;&nbsp; '
-								+ rows[i].gtmModified + '</p>';
-							htmlText += '</div>';
-							htmlText += '<hr>';
-						}
-						$("#incomeNum").append(htmlText);
-						document.getElementById("flagLoad").style.display = "block";
-						currentPage++;
-						if (total <= currentPage * limit) {
-							document.getElementById("flagLoaded").style.display = "block";
-							document.getElementById("flagLoad").style.display = "none";
-						}
-					}
-				});
-		}
-	</script>
-
-
+		<div class="container">
+			<div class="row">
+				<div class="main col-md-12">
+					<h1 class="page-title">Blog</h1>
+					<div class="separator-2"></div>
+					<article th:each="prod : ${result.rows}"
+						class="clearfix blogpost object-non-visible"
+						data-animation-effect="fadeInUpSmall" data-effect-delay="200">
+						<!-- 
+						<div class="overlay-container">
+							<img src="/s/images/blog-1.jpg" alt="">
+							<div class="overlay">
+								<div class="overlay-links">
+									<a href="blog-post.html"><i class="fa fa-link"></i></a> <a
+										href="/s/images/blog-1.jpg" class="popup-img-single"
+										title="image title"><i class="fa fa-search-plus"></i></a>
+								</div>
+							</div>
+						</div>
+						 -->
+						<div class="blogpost-body">
+							<div class="post-info">
+								<span class="day">12</span> <span class="month">Sept 2014</span>
+							</div>
+							<div class="blogpost-content">
+								<header>
+									<h2 class="title">
+										<a th:text="${prod.title}"
+											th:href="@{/blog/open/post/{cid}(cid=${prod.cid})}"></a>
+									</h2>
+									<div class="submitted">
+										<i class="fa fa-user pr-5"></i> by <a href="#"
+											th:text="${prod.author}"></a>
+									</div>
+								</header>
+								<p>Mauris dolor sapien, malesuada at interdum ut, hendrerit
+									eget lorem. Nunc interdum mi neque, et sollicitudin purus
+									fermentum ut. Suspendisse faucibus nibh odio, a vehicula eros
+									pharetra in. Maecenas ullamcorper commodo rutrum. In iaculis
+									lectus vel augue eleifend dignissim. Aenean viverra semper
+									sollicitudin.</p>
+							</div>
+						</div>
+						<footer class="clearfix">
+							<ul class="links pull-left">
+								<li><i class="fa fa-comment-o pr-5"></i> <a href="#">22
+										comments</a> |</li>
+								<li><i class="fa fa-tags pr-5"></i> <a href="#">tag 1</a>,
+									<a href="#">tag 2</a>, <a href="#">long tag 3</a></li>
+							</ul>
+							<a class="pull-right link" href="blog-post.html"><span>Read
+									more</span></a>
+						</footer>
+					</article>
+					<ul class="pagination">
+						<li><a href="#"><<</a></li>
+						<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li><a href="#">>></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
 </html>

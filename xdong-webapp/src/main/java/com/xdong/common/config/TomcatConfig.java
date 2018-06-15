@@ -10,7 +10,6 @@ import org.springframework.boot.context.embedded.tomcat.TomcatConnectorCustomize
 
 /**
  * 类TomcatConfig.java的实现描述：TODO 类实现描述
- * 
  * @author wanglei 2018年1月30日 下午3:31:01
  */
 @Configuration

@@ -7,11 +7,10 @@ import org.springframework.core.convert.converter.Converter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.zip.DataFormatException;
 
 /**
- * @author gaoyuzhe
- * @date 2017/12/14.
+ * 类DateConverConfig.java的实现描述：TODO 类实现描述
+ * @author wanglei 2018年6月15日 下午5:20:55
  */
 @Configuration
 public class DateConverConfig {
