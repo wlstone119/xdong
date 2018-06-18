@@ -10,8 +10,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
 import com.xdong.admin.service.userrole.ISysUserService;
@@ -50,6 +52,12 @@ public class XdongApplication {
     public String cacheReload(Long deptId) {
         sysUserService.reload();
         return "success";
+    }
+
+    @RequestMapping("/test")
+    public ModelAndView test(Model model) {
+        model.addAttribute("text", "testVelocity");
+        return new ModelAndView("main");
     }
 
 }
