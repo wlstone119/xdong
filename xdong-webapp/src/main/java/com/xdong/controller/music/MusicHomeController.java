@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import com.xdong.common.controller.BaseController;
 import com.xdong.dal.music.domain.RpSongsDo;
 import com.xdong.music.service.IRpSongsService;
 
@@ -24,12 +25,14 @@ import com.xdong.music.service.IRpSongsService;
  */
 @Controller
 @RequestMapping(value = "/music")
-public class MusicHomeController {
+public class MusicHomeController extends BaseController {
 
-    private static Logger   logger = Logger.getLogger(MusicHomeController.class);
+    private static Logger       logger = Logger.getLogger(MusicHomeController.class);
+
+    private static final String prefix = "music";
 
     @Autowired
-    private IRpSongsService rpSongsServiceImpl;
+    private IRpSongsService     rpSongsServiceImpl;
 
     @RequestMapping(value = "/home", method = { RequestMethod.GET, RequestMethod.POST })
     @ResponseBody
@@ -44,12 +47,12 @@ public class MusicHomeController {
         modelMap.put("songs", result.getRecords());
 
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("music_home");
+        mav.setViewName(getUrl(prefix, "music_home"));
         mav.addAllObjects(modelMap);
         return mav;
     }
 
-    @RequestMapping(value = "/songData", method = { RequestMethod.GET})
+    @RequestMapping(value = "/songData", method = { RequestMethod.GET })
     @ResponseBody
     public Object songData(@RequestParam("songId") String songId) {
         return rpSongsServiceImpl.selectById(Long.parseLong(songId));

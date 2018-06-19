@@ -2,13 +2,10 @@ package com.xdong.common.controller;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import org.springframework.stereotype.Controller;
 
-import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.toolkit.StringUtils;
-import com.xdong.common.utils.Query;
 import com.xdong.common.utils.ShiroUtils;
 import com.xdong.dal.userrole.domain.SysUser;
 
@@ -45,5 +42,9 @@ public class BaseController {
             }
         }
         return result;
+    }
+
+    protected String getUrl(String prefix, String url) {
+        return prefix + "/" + url;
     }
 }
