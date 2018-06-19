@@ -5,17 +5,21 @@ import java.util.Properties;
 
 import javax.servlet.ServletContext;
 
+import org.apache.log4j.Logger;
 import org.apache.velocity.exception.VelocityException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.web.servlet.view.velocity.VelocityConfigurer;
+import org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver;
 import org.springframework.web.servlet.view.velocity.VelocityViewResolver;
 
 @SuppressWarnings("deprecation")
 @Configuration
 public class VelocityConfig {
 
+    private static Logger logger = Logger.getLogger(VelocityConfig.class);
+    
     @Bean
     public VelocityConfigurer velocityConfigurer() throws VelocityException, IOException {
         VelocityConfigurer velocityConfigurer = new VelocityConfigurer();
@@ -23,15 +27,15 @@ public class VelocityConfig {
         velocityProperties.setProperty("input.encoding", "UTF-8");
         velocityProperties.setProperty("output.encoding", "UTF-8");
         velocityConfigurer.setVelocityProperties(velocityProperties);
-        velocityConfigurer.setResourceLoaderPath("/templates/velocity");
+        velocityConfigurer.setResourceLoaderPath("/templates/velocity/");
         velocityConfigurer.afterPropertiesSet();
         return velocityConfigurer;
     }
 
     @Bean
-    public VelocityViewResolver viewResolver(ServletContext servletContext) throws Exception {
-
-        VelocityViewResolver resolver = new VelocityViewResolver();
+    public VelocityLayoutViewResolver velocityLayoutViewResolver() {
+        logger.info("VelocityLayoutViewResolver.init.start");
+        VelocityLayoutViewResolver resolver = new VelocityLayoutViewResolver();
         resolver.setCache(true);
         resolver.setPrefix("");
         resolver.setSuffix(".vm");
@@ -41,9 +45,11 @@ public class VelocityConfig {
         resolver.setRequestContextAttribute("rc");
         resolver.setDateToolAttribute("dateTool");
         resolver.setNumberToolAttribute("numberTool");
+        resolver.setLayoutKey("/layout/default.vm");
+        resolver.setLayoutUrl("/layout/default.vm");
+        resolver.setScreenContentKey("screen_content");
         resolver.setOrder(-9999);
-        // resolver.setToolboxConfigLocation("/toolbox.xml");
-
+        logger.info("VelocityLayoutViewResolver.init.end");
         return resolver;
     }
 }

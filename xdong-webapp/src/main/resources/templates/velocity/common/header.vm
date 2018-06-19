@@ -1,0 +1,44 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="iDea a Bootstrap-based, Responsive HTML5 Template">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="htmlcoder.me">
+
+<title>$!{siteName}</title>
+
+<link rel="shortcut icon" href="/s/images/favicon.ico">
+<link href="/s/bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="/s/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+<link href="/s/fonts/fontello/css/fontello.css" rel="stylesheet">
+<link href="/s/plugins/magnific-popup/magnific-popup.css" rel="stylesheet">
+<link href="/s/plugins/owl-carousel/owl.carousel.css" rel="stylesheet">
+<link href="/s/plugins/rs-plugin/css/settings.css" media="screen" rel="stylesheet">
+<link href="/s/plugins/rs-plugin/css/extralayers.css" media="screen" rel="stylesheet">
+<link href="/s/styles/jquery-ui-1.8.5.custom.css" rel="stylesheet" type="text/css" />
+
+<link href="/s/css/animations.css" rel="stylesheet">
+<link href="/s/css/style.css" rel="stylesheet">
+<link href="/s/css/skins/red.css" rel="stylesheet">
+<link href="/s/css/custom.css" rel="stylesheet">
+
+<script type="text/javascript" src="/s/plugins/jquery.min.js"></script>
+<script type="text/javascript" src="/s/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/s/scripts/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="/s/scripts/jquery-ui-1.8.5.custom.min.js"></script>
+<script type="text/javascript" src="/s/scripts/jquery.filloptions.js"></script>
+<script type="text/javascript" src="/s/scripts/easy_validator.pack.js"></script>
+<script type="text/javascript" src="/s/plugins/jquery.parallax-1.1.3.js"></script>
+<script type="text/javascript" src="/s/plugins/jquery.validate.js"></script>
+<script type="text/javascript" src="/s/plugins/jquery.appear.js"></script>
+<script type="text/javascript" src="/s/plugins/jquery.sharrre.js"></script>
+<script type="text/javascript" src="/s/plugins/jquery.countTo.js"></script>
+<script type="text/javascript" src="/s/scripts/jquery-extend-AdAdvance.js"></script>
+<script type="text/javascript" src="/s/scripts/jquery-extend-TrunAd2.js"></script>
+<script type="text/javascript" src="/s/scripts/box.js"></script>
+<script type="text/javascript" src="/s/plugins/modernizr.js"></script>
+<script type="text/javascript" src="/s/plugins/isotope/isotope.pkgd.min.js"></script>
+<script type="text/javascript" src="/s/plugins/owl-carousel/owl.carousel.js"></script>
+<script type="text/javascript" src="/s/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<script type="text/javascript" src="/s/js/template.js"></script>
+<script type="text/javascript" src="/s/js/custom.js"></script>
+</head>
