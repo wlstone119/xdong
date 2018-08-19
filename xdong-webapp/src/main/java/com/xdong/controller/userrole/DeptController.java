@@ -7,12 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import com.xdong.admin.service.userrole.ISysDeptService;
 import com.xdong.common.config.Constant;
 import com.xdong.common.controller.BaseController;
 import com.xdong.common.utils.R;
-import com.xdong.dal.common.domain.Tree;
-import com.xdong.dal.userrole.domain.SysDept;
+import com.xdong.model.entity.userrole.SysDeptDo;
+import com.xdong.spi.admin.userrole.ISysDeptService;
+import com.xdong.spi.admin.userrole.Tree;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -42,9 +42,9 @@ public class DeptController extends BaseController {
     @ResponseBody
     @GetMapping("/list")
     @RequiresPermissions("system:sysDept:sysDept")
-    public List<SysDept> list() {
+    public List<SysDeptDo> list() {
         Map<String, Object> query = new HashMap<String, Object>(16);
-        List<SysDept> sysDeptList = sysDeptService.selectByMap(query);
+        List<SysDeptDo> sysDeptList = sysDeptService.selectByMap(query);
         return sysDeptList;
     }
 
@@ -63,12 +63,12 @@ public class DeptController extends BaseController {
     @GetMapping("/edit/{deptId}")
     @RequiresPermissions("system:sysDept:edit")
     String edit(@PathVariable("deptId") Long deptId, Model model) {
-        SysDept sysDept = sysDeptService.selectById(deptId);
+    	SysDeptDo sysDept = sysDeptService.selectById(deptId);
         model.addAttribute("sysDept", sysDept);
         if (Constant.DEPT_ROOT_ID.equals(sysDept.getParentId())) {
             model.addAttribute("parentDeptName", "无");
         } else {
-            SysDept parDept = sysDeptService.selectById(sysDept.getParentId());
+        	SysDeptDo parDept = sysDeptService.selectById(sysDept.getParentId());
             model.addAttribute("parentDeptName", parDept.getName());
         }
         return prefix + "/edit";
@@ -80,7 +80,7 @@ public class DeptController extends BaseController {
     @ResponseBody
     @PostMapping("/save")
     @RequiresPermissions("system:sysDept:add")
-    public R save(SysDept sysDept) {
+    public R save(SysDeptDo sysDept) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
             return R.error(1, "演示系统不允许修改,完整体验请部署程序");
         }
@@ -96,7 +96,7 @@ public class DeptController extends BaseController {
     @ResponseBody
     @RequestMapping("/update")
     @RequiresPermissions("system:sysDept:edit")
-    public R update(SysDept sysDept) {
+    public R update(SysDeptDo sysDept) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
             return R.error(1, "演示系统不允许修改,完整体验请部署程序");
         }
@@ -147,8 +147,8 @@ public class DeptController extends BaseController {
 
     @GetMapping("/tree")
     @ResponseBody
-    public Tree<SysDept> tree() {
-        Tree<SysDept> tree = new Tree<SysDept>();
+    public Tree<SysDeptDo> tree() {
+        Tree<SysDeptDo> tree = new Tree<SysDeptDo>();
         tree = sysDeptService.getTree();
         return tree;
     }

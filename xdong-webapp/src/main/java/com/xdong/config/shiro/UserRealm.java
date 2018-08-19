@@ -17,11 +17,11 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.xdong.admin.service.userrole.ISysMenuService;
-import com.xdong.admin.service.userrole.ISysUserService;
 import com.xdong.common.config.ApplicationContextRegister;
 import com.xdong.common.utils.ShiroUtils;
-import com.xdong.dal.userrole.domain.SysUser;
+import com.xdong.model.entity.userrole.SysUserDo;
+import com.xdong.spi.admin.userrole.ISysMenuService;
+import com.xdong.spi.admin.userrole.ISysUserService;
 
 public class UserRealm extends AuthorizingRealm {
 
@@ -44,10 +44,10 @@ public class UserRealm extends AuthorizingRealm {
 
         ISysUserService userService = ApplicationContextRegister.getBean(ISysUserService.class);
         // 查询用户信息
-        EntityWrapper<SysUser> wrapper = new EntityWrapper<SysUser>();
+        EntityWrapper<SysUserDo> wrapper = new EntityWrapper<SysUserDo>();
         wrapper.allEq(map);
 
-        SysUser user = userService.selectOne(wrapper);
+        SysUserDo user = userService.selectOne(wrapper);
 
         // 账号不存在
         if (user == null) {

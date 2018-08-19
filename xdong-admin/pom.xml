@@ -22,7 +22,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.xdong</groupId>
-			<artifactId>xdong-common</artifactId>
+			<artifactId>xdong-spi</artifactId>
 		</dependency>
 	</dependencies>
 </project>

@@ -29,11 +29,14 @@
 
 	<modules>
 		<module>xdong-dal</module>
-		<module>xdong-webapp</module>
 		<module>xdong-common</module>
+		<module>xdong-model</module>
+		<module>xdong-spi</module>
 		<module>xdong-admin</module>
 		<module>xdong-shop</module>
 		<module>xdong-music</module>
+		<module>xdong-crawler</module>
+		<module>xdong-webapp</module>
 	</modules>
 
 	<dependencyManagement>
@@ -46,6 +49,21 @@
 			<dependency>
 				<groupId>com.xdong</groupId>
 				<artifactId>xdong-common</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+			<dependency>
+				<groupId>com.xdong</groupId>
+				<artifactId>xdong-model</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+			<dependency>
+				<groupId>com.xdong</groupId>
+				<artifactId>xdong-spi</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+			<dependency>
+				<groupId>com.xdong</groupId>
+				<artifactId>xdong-crawler</artifactId>
 				<version>1.0.0</version>
 			</dependency>
 			<dependency>
@@ -216,6 +234,11 @@
 				<groupId>org.apache.velocity</groupId>
 				<artifactId>velocity-tools</artifactId>
 				<version>2.0</version>
+			</dependency>
+			<dependency>
+				<groupId>edu.uci.ics</groupId>
+				<artifactId>crawler4j</artifactId>
+				<version>4.1</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xdong.dal.notify.dao.OaNotifyMapper">
+<mapper namespace="com.xdong.dal.notify.OaNotifyMapper">
 
 	<!-- 通用查询映射结果 -->
-	<resultMap id="BaseResultMap" type="com.xdong.dal.notify.domain.OaNotify">
+	<resultMap id="BaseResultMap" type="com.xdong.model.entity.notify.OaNotifyDo">
 		<id column="id" property="id" />
 		<result column="type" property="type" />
 		<result column="title" property="title" />
@@ -25,7 +25,7 @@
 		updateDate, remarks, del_flag AS delFlag
 	</sql>
 
-	<select id="listDTO" resultType="com.xdong.dal.notify.domain.OaNotifyDto">
+	<select id="listDTO" resultType="com.xdong.model.dto.notify.OaNotifyDto">
 		select DISTINCT
 		n.id
 		,`type`,`title`,`content`,`files`,r.is_read,`status`,`create_by`,`create_date`,`update_by`,`update_date`,`remarks`,`del_flag`

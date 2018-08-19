@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xdong.dal.notify.dao.OaNotifyRecordMapper">
+<mapper namespace="com.xdong.dal.notify.OaNotifyRecordMapper">
 
 	<!-- 通用查询映射结果 -->
-	<resultMap id="BaseResultMap" type="com.xdong.dal.notify.domain.OaNotifyRecord">
+	<resultMap id="BaseResultMap" type="com.xdong.model.entity.notify.OaNotifyRecordDo">
 		<id column="id" property="id" />
 		<result column="notify_id" property="notifyId" />
 		<result column="user_id" property="userId" />
@@ -17,7 +17,7 @@
 		read_date AS readDate
 	</sql>
 
-	<update id="changeRead" parameterType="com.xdong.dal.notify.domain.OaNotifyRecord">
+	<update id="changeRead" parameterType="com.xdong.model.entity.notify.OaNotifyRecordDo">
 		update oa_notify_record
 		<set>
 			<if test="isRead != null">`is_read` = #{isRead}, </if>

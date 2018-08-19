@@ -6,7 +6,7 @@ import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.xdong.dal.userrole.domain.SysUser;
+import com.xdong.model.entity.userrole.SysUserDo;
 
 import java.security.Principal;
 import java.util.Collection;
@@ -21,9 +21,9 @@ public class ShiroUtils {
         return SecurityUtils.getSubject();
     }
 
-    public static SysUser getUser() {
+    public static SysUserDo getUser() {
         Object object = getSubjct().getPrincipal();
-        return (SysUser) object;
+        return (SysUserDo) object;
     }
 
     public static Long getUserId() {

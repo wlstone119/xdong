@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
 
-import com.xdong.dal.notify.domain.Response;
+import com.xdong.model.dto.common.Response;
 
 @Component
 public class WelcomeJob implements Job {

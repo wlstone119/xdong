@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
-import com.xdong.admin.service.userrole.ISysUserService;
 import com.xdong.banner.EndBanner;
 import com.xdong.banner.EndImageBanner;
+import com.xdong.spi.admin.userrole.ISysUserService;
 
 /**
  * @ServletComponentScan 使用代码注册bean时不需要增加此注解
@@ -29,7 +29,7 @@ import com.xdong.banner.EndImageBanner;
  */
 @EnableTransactionManagement
 @ServletComponentScan
-@MapperScan("com.xdong.dal.*.dao")
+@MapperScan("com.xdong.dal.*")
 @SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })
 @RestController
 public class XdongApplication {

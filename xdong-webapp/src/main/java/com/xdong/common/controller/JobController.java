@@ -6,12 +6,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.baomidou.mybatisplus.plugins.Page;
-import com.xdong.admin.service.common.ISysTaskService;
 import com.xdong.common.config.Constant;
 import com.xdong.common.utils.PageUtils;
 import com.xdong.common.utils.Query;
 import com.xdong.common.utils.R;
-import com.xdong.dal.common.domain.SysTask;
+import com.xdong.model.entity.common.SysTaskDo;
+import com.xdong.spi.admin.common.ISysTaskService;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -39,8 +39,8 @@ public class JobController extends BaseController {
 
         // 查询列表数据
         Query query = new Query(params);
-        Page<SysTask> page = new Page<SysTask>(query.getPage(), query.getLimit());
-        Page<SysTask> result = taskScheduleJobService.selectPage(page.setCondition(convertConditionParam(params)));
+        Page<SysTaskDo> page = new Page<SysTaskDo>(query.getPage(), query.getLimit());
+        Page<SysTaskDo> result = taskScheduleJobService.selectPage(page.setCondition(convertConditionParam(params)));
         PageUtils pageUtils = new PageUtils(result.getRecords(), result.getTotal());
 
         return pageUtils;
@@ -53,7 +53,7 @@ public class JobController extends BaseController {
 
     @GetMapping("/edit/{id}")
     String edit(@PathVariable("id") Long id, Model model) {
-        SysTask job = taskScheduleJobService.selectById(id);
+        SysTaskDo job = taskScheduleJobService.selectById(id);
         model.addAttribute("job", job);
         return "common/job/edit";
     }
@@ -63,7 +63,7 @@ public class JobController extends BaseController {
      */
     @RequestMapping("/info/{id}")
     public R info(@PathVariable("id") Long id) {
-        SysTask taskScheduleJob = taskScheduleJobService.selectById(id);
+        SysTaskDo taskScheduleJob = taskScheduleJobService.selectById(id);
         return R.ok().put("taskScheduleJob", taskScheduleJob);
     }
 
@@ -72,7 +72,7 @@ public class JobController extends BaseController {
      */
     @ResponseBody
     @PostMapping("/save")
-    public R save(SysTask taskScheduleJob) {
+    public R save(SysTaskDo taskScheduleJob) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
             return R.error(1, "演示系统不允许修改,完整体验请部署程序");
         }
@@ -87,7 +87,7 @@ public class JobController extends BaseController {
      */
     @ResponseBody
     @PostMapping("/update")
-    public R update(SysTask taskScheduleJob) {
+    public R update(SysTaskDo taskScheduleJob) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
             return R.error(1, "演示系统不允许修改,完整体验请部署程序");
         }

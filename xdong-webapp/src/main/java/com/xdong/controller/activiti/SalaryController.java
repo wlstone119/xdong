@@ -6,16 +6,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.baomidou.mybatisplus.plugins.Page;
-import com.xdong.admin.service.activiti.ISalaryService;
 import com.xdong.common.activiti.utils.ActivitiUtils;
 import com.xdong.common.controller.BaseController;
 import com.xdong.common.utils.PageUtils;
 import com.xdong.common.utils.Query;
 import com.xdong.common.utils.R;
 import com.xdong.common.utils.ShiroUtils;
-import com.xdong.dal.common.domain.SysDict;
-import com.xdong.dal.common.domain.SysLog;
-import com.xdong.dal.activiti.domain.Salary;
+import com.xdong.spi.admin.activiti.ISalaryService;
+import com.xdong.model.entity.activiti.SalaryDo;
 
 import java.util.Date;
 import java.util.List;
@@ -27,7 +25,7 @@ import java.util.Map;
  * @author wanglei 2018年4月30日 下午7:40:02
  */
 @Controller
-@RequestMapping("/act/salary")
+@RequestMapping("/act/SalaryDo")
 public class SalaryController extends BaseController {
 
     @Autowired
@@ -36,8 +34,8 @@ public class SalaryController extends BaseController {
     ActivitiUtils          activitiUtils;
 
     @GetMapping()
-    String Salary() {
-        return "activiti/salary/salary";
+    String SalaryDo() {
+        return "activiti/SalaryDo/SalaryDo";
     }
 
     @ResponseBody
@@ -46,8 +44,8 @@ public class SalaryController extends BaseController {
 
         // 查询列表数据
         Query query = new Query(params);
-        Page<Salary> page = new Page<Salary>(query.getPage(), query.getLimit());
-        Page<Salary> result = salaryService.selectPage(page.setCondition(convertConditionParam(params)));
+        Page<SalaryDo> page = new Page<com.xdong.model.entity.activiti.SalaryDo>(query.getPage(), query.getLimit());
+        Page<SalaryDo> result = salaryService.selectPage(page.setCondition(convertConditionParam(params)));
         PageUtils pageUtils = new PageUtils(result.getRecords(), result.getTotal());
 
         return pageUtils;
@@ -55,15 +53,15 @@ public class SalaryController extends BaseController {
 
     @GetMapping("/form")
     String add() {
-        return "act/salary/add";
+        return "act/SalaryDo/add";
     }
 
     @GetMapping("/form/{taskId}")
     String edit(@PathVariable("taskId") String taskId, Model model) {
-        Salary salary = salaryService.selectById(activitiUtils.getBusinessKeyByTaskId(taskId));
-        salary.setTaskId(taskId);
-        model.addAttribute("salary", salary);
-        return "act/salary/edit";
+        SalaryDo SalaryDo = salaryService.selectById(activitiUtils.getBusinessKeyByTaskId(taskId));
+        SalaryDo.setTaskId(taskId);
+        model.addAttribute("SalaryDo", SalaryDo);
+        return "act/SalaryDo/edit";
     }
 
     /**
@@ -71,13 +69,13 @@ public class SalaryController extends BaseController {
      */
     @ResponseBody
     @PostMapping("/save")
-    public R saveOrUpdate(Salary salary) {
-        salary.setCreateDate(new Date());
-        salary.setUpdateDate(new Date());
-        salary.setCreateBy(ShiroUtils.getUserId().toString());
-        salary.setUpdateBy(ShiroUtils.getUserId().toString());
-        salary.setDelFlag("1");
-        if (salaryService.save(salary)) {
+    public R saveOrUpdate(SalaryDo SalaryDo) {
+        SalaryDo.setCreateDate(new Date());
+        SalaryDo.setUpdateDate(new Date());
+        SalaryDo.setCreateBy(ShiroUtils.getUserId().toString());
+        SalaryDo.setUpdateBy(ShiroUtils.getUserId().toString());
+        SalaryDo.setDelFlag("1");
+        if (salaryService.save(SalaryDo)) {
             return R.ok();
         }
         return R.error();
@@ -88,18 +86,18 @@ public class SalaryController extends BaseController {
      */
     @ResponseBody
     @RequestMapping("/update")
-    public R update(com.xdong.dal.activiti.domain.Salary salary) {
-        String taskKey = activitiUtils.getTaskByTaskId(salary.getTaskId()).getTaskDefinitionKey();
+    public R update(SalaryDo SalaryDo) {
+        String taskKey = activitiUtils.getTaskByTaskId(SalaryDo.getTaskId()).getTaskDefinitionKey();
         if ("audit2".equals(taskKey)) {
-            salary.setHrText(salary.getTaskComment());
+            SalaryDo.setHrText(SalaryDo.getTaskComment());
         } else if ("audit3".equals(taskKey)) {
-            salary.setLeadText(salary.getTaskComment());
+            SalaryDo.setLeadText(SalaryDo.getTaskComment());
         } else if ("audit4".equals(taskKey)) {
-            salary.setMainLeadText(salary.getTaskComment());
-        } else if ("apply_end".equals(salary.getTaskComment())) {
+            SalaryDo.setMainLeadText(SalaryDo.getTaskComment());
+        } else if ("apply_end".equals(SalaryDo.getTaskComment())) {
             // 流程完成，兑现
         }
-        salaryService.update(salary);
+        salaryService.update(SalaryDo);
         return R.ok();
     }
 

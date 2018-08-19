@@ -8,15 +8,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.baomidou.mybatisplus.plugins.Page;
-import com.xdong.admin.service.common.ISysFileService;
 import com.xdong.common.config.XdongConfig;
 import com.xdong.common.utils.FileType;
 import com.xdong.common.utils.FileUtil;
 import com.xdong.common.utils.PageUtils;
 import com.xdong.common.utils.Query;
 import com.xdong.common.utils.R;
-import com.xdong.dal.common.domain.SysDict;
-import com.xdong.dal.common.domain.SysFile;
+import com.xdong.spi.admin.common.ISysFileService;
+import com.xdong.model.entity.common.SysFileDo;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -53,8 +52,8 @@ public class FileController extends BaseController {
 
         // 查询列表数据
         Query query = new Query(params);
-        Page<SysFile> page = new Page<SysFile>(query.getPage(), query.getLimit());
-        Page<SysFile> result = sysFileService.selectPage(page.setCondition(convertConditionParam(params)));
+        Page<SysFileDo> page = new Page<SysFileDo>(query.getPage(), query.getLimit());
+        Page<SysFileDo> result = sysFileService.selectPage(page.setCondition(convertConditionParam(params)));
         PageUtils pageUtils = new PageUtils(result.getRecords(), result.getTotal());
 
         return pageUtils;
@@ -69,7 +68,7 @@ public class FileController extends BaseController {
     @GetMapping("/edit")
     // @RequiresPermissions("common:bComments")
     String edit(Long id, Model model) {
-        SysFile sysFile = sysFileService.selectById(id);
+    	SysFileDo sysFile = sysFileService.selectById(id);
         model.addAttribute("sysFile", sysFile);
         return "common/sysFile/edit";
     }
@@ -80,7 +79,7 @@ public class FileController extends BaseController {
     @RequestMapping("/info/{id}")
     @RequiresPermissions("common:info")
     public R info(@PathVariable("id") Long id) {
-        SysFile sysFile = sysFileService.selectById(id);
+    	SysFileDo sysFile = sysFileService.selectById(id);
         return R.ok().put("sysFile", sysFile);
     }
 
@@ -90,7 +89,7 @@ public class FileController extends BaseController {
     @ResponseBody
     @PostMapping("/save")
     @RequiresPermissions("common:save")
-    public R save(SysFile sysFile) {
+    public R save(SysFileDo sysFile) {
         if (sysFileService.insert(sysFile)) {
             return R.ok();
         }
@@ -102,7 +101,7 @@ public class FileController extends BaseController {
      */
     @RequestMapping("/update")
     @RequiresPermissions("common:update")
-    public R update(SysFile sysFile) {
+    public R update(SysFileDo sysFile) {
         sysFileService.updateById(sysFile);
 
         return R.ok();
@@ -152,7 +151,7 @@ public class FileController extends BaseController {
         }
         String fileName = file.getOriginalFilename();
         fileName = FileUtil.renameToUUID(fileName);
-        SysFile sysFile = new SysFile(FileType.fileType(fileName), "/files/" + fileName, new Date());
+        SysFileDo sysFile = new SysFileDo(FileType.fileType(fileName), "/files/" + fileName, new Date());
         try {
             FileUtil.uploadFile(file.getBytes(), leagueConfig.getUploadPath(), fileName);
         } catch (Exception e) {

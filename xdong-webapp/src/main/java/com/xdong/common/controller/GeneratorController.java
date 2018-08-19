@@ -1,9 +1,9 @@
 package com.xdong.common.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.xdong.admin.service.common.GeneratorService;
 import com.xdong.common.utils.GenUtils;
 import com.xdong.common.utils.R;
+import com.xdong.spi.admin.common.GeneratorService;
 
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;

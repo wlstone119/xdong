@@ -13,10 +13,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.xdong.admin.service.activiti.ProcessService;
+import com.xdong.admin.vo.activiti.ProcessVO;
 import com.xdong.common.utils.PageUtils;
 import com.xdong.common.utils.R;
-import com.xdong.vo.activiti.ProcessVO;
+import com.xdong.spi.admin.activiti.ProcessService;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.stream.XMLStreamException;

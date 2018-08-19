@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xdong.dal.userrole.dao.SysMenuMapper">
+<mapper namespace="com.xdong.dal.userrole.SysMenuMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.xdong.dal.userrole.domain.SysMenu">
+    <resultMap id="BaseResultMap" type="com.xdong.model.entity.userrole.SysMenuDo">
         <id column="menu_id" property="menuId" />
         <result column="parent_id" property="parentId" />
         <result column="name" property="name" />
@@ -21,7 +21,7 @@
         menu_id AS menuId, parent_id AS parentId, name, url, perms, type, icon, order_num AS orderNum, gmt_create AS gmtCreate, gmt_modified AS gmtModified
     </sql>
     
-    <select id="listMenuByUserId" resultType="com.xdong.dal.userrole.domain.SysMenu">
+    <select id="listMenuByUserId" resultType="com.xdong.model.entity.userrole.SysMenuDo">
 		select distinct
 		m.menu_id , parent_id, name, url,
 		perms,`type`,icon,order_num,gmt_create, gmt_modified

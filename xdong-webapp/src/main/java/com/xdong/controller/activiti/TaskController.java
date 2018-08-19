@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.xdong.admin.service.activiti.ActTaskService;
+import com.xdong.admin.vo.activiti.ProcessVO;
+import com.xdong.admin.vo.activiti.TaskVO;
 import com.xdong.common.utils.PageUtils;
-import com.xdong.vo.activiti.ProcessVO;
-import com.xdong.vo.activiti.TaskVO;
+import com.xdong.spi.admin.activiti.ActTaskService;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -30,81 +30,81 @@ import java.util.List;
 @RestController
 public class TaskController {
 
-    @Autowired
-    RepositoryService repositoryService;
-    @Autowired
-    FormService       formService;
-    @Autowired
-    TaskService       taskService;
-    @Autowired
-    ActTaskService    actTaskService;
+	@Autowired
+	RepositoryService repositoryService;
+	@Autowired
+	FormService formService;
+	@Autowired
+	TaskService taskService;
+	@Autowired
+	ActTaskService actTaskService;
 
-    @GetMapping("goto")
-    public ModelAndView gotoTask() {
-        return new ModelAndView("act/task/gotoTask");
-    }
+	@GetMapping("goto")
+	public ModelAndView gotoTask() {
+		return new ModelAndView("act/task/gotoTask");
+	}
 
-    @GetMapping("/gotoList")
-    PageUtils list(int offset, int limit) {
-        List<ProcessDefinition> processDefinitions = repositoryService.createProcessDefinitionQuery().listPage(offset,
-                                                                                                               limit);
-        int count = (int) repositoryService.createProcessDefinitionQuery().count();
-        List<Object> list = new ArrayList<>();
-        for (ProcessDefinition processDefinition : processDefinitions) {
-            list.add(new ProcessVO(processDefinition));
-        }
+	@GetMapping("/gotoList")
+	PageUtils list(int offset, int limit) {
+		List<ProcessDefinition> processDefinitions = repositoryService.createProcessDefinitionQuery().listPage(offset,
+				limit);
+		int count = (int) repositoryService.createProcessDefinitionQuery().count();
+		List<Object> list = new ArrayList<>();
+		for (ProcessDefinition processDefinition : processDefinitions) {
+			list.add(new ProcessVO(processDefinition));
+		}
 
-        PageUtils pageUtils = new PageUtils(list, count);
-        return pageUtils;
-    }
+		PageUtils pageUtils = new PageUtils(list, count);
+		return pageUtils;
+	}
 
-    @GetMapping("/form/{procDefId}")
-    public void startForm(@PathVariable("procDefId") String procDefId,
-                          HttpServletResponse response) throws IOException {
-        String formKey = actTaskService.getFormKey(procDefId, null);
-        response.sendRedirect(formKey);
-    }
+	@GetMapping("/form/{procDefId}")
+	public void startForm(@PathVariable("procDefId") String procDefId, HttpServletResponse response)
+			throws IOException {
+		String formKey = actTaskService.getFormKey(procDefId, null);
+		response.sendRedirect(formKey);
+	}
 
-    @GetMapping("/form/{procDefId}/{taskId}")
-    public void form(@PathVariable("procDefId") String procDefId, @PathVariable("taskId") String taskId,
-                     HttpServletResponse response) throws IOException {
-        // 获取流程XML上的表单KEY
+	@GetMapping("/form/{procDefId}/{taskId}")
+	public void form(@PathVariable("procDefId") String procDefId, @PathVariable("taskId") String taskId,
+			HttpServletResponse response) throws IOException {
+		// 获取流程XML上的表单KEY
 
-        String formKey = actTaskService.getFormKey(procDefId, taskId);
+		String formKey = actTaskService.getFormKey(procDefId, taskId);
 
-        response.sendRedirect(formKey + "/" + taskId);
-    }
+		response.sendRedirect(formKey + "/" + taskId);
+	}
 
-    @GetMapping("/todo")
-    ModelAndView todo() {
-        return new ModelAndView("act/task/todoTask");
-    }
+	@GetMapping("/todo")
+	ModelAndView todo() {
+		return new ModelAndView("act/task/todoTask");
+	}
 
-    @GetMapping("/todoList")
-    List<TaskVO> todoList() {
-        List<Task> tasks = taskService.createTaskQuery().taskAssignee("admin").list();
-        List<TaskVO> taskVOS = new ArrayList<>();
-        for (Task task : tasks) {
-            TaskVO taskVO = new TaskVO(task);
-            taskVOS.add(taskVO);
-        }
-        return taskVOS;
-    }
+	@GetMapping("/todoList")
+	List<TaskVO> todoList() {
+		List<Task> tasks = taskService.createTaskQuery().taskAssignee("admin").list();
+		List<TaskVO> taskVOS = new ArrayList<>();
+		for (Task task : tasks) {
+			TaskVO taskVO = new TaskVO(task);
+			taskVOS.add(taskVO);
+		}
+		return taskVOS;
+	}
 
-    /**
-     * 读取带跟踪的图片
-     */
-    @RequestMapping(value = "/trace/photo/{procDefId}/{execId}")
-    public void tracePhoto(@PathVariable("procDefId") String procDefId, @PathVariable("execId") String execId,
-                           HttpServletResponse response) throws Exception {
-        InputStream imageStream = actTaskService.tracePhoto(procDefId, execId);
+	/**
+	 * 读取带跟踪的图片
+	 */
+	@RequestMapping(value = "/trace/photo/{procDefId}/{execId}")
+	public void tracePhoto(@PathVariable("procDefId") String procDefId, @PathVariable("execId") String execId,
+			HttpServletResponse response) throws Exception {
+		InputStream imageStream = actTaskService.tracePhoto(procDefId, execId);
 
-        // 输出资源内容到相应对象
-        byte[] b = new byte[1024];
-        int len;
-        while ((len = imageStream.read(b, 0, 1024)) != -1) {
-            response.getOutputStream().write(b, 0, len);
-        }
-    }
+		// 输出资源内容到相应对象
+		byte[] b = new byte[1024];
+		int len;
+		while ((len = imageStream.read(b, 0, 1024)) != -1) {
+			response.getOutputStream().write(b, 0, len);
+		}
+	}
 
 }

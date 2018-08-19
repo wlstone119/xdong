@@ -21,7 +21,8 @@ import org.quartz.TriggerKey;
 import org.quartz.impl.matchers.GroupMatcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.xdong.dal.common.domain.ScheduleJob;
+
+import com.xdong.common.job.ScheduleJob;
 
 /**
  * @title: QuartzManager.java

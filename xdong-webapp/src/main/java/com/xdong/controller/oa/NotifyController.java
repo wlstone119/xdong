@@ -7,19 +7,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.baomidou.mybatisplus.plugins.Page;
-import com.xdong.admin.service.common.ISysDictService;
-import com.xdong.admin.service.notify.IOaNotifyRecordService;
-import com.xdong.admin.service.notify.IOaNotifyService;
 import com.xdong.common.config.Constant;
 import com.xdong.common.controller.BaseController;
 import com.xdong.common.utils.PageUtils;
 import com.xdong.common.utils.Query;
 import com.xdong.common.utils.R;
-import com.xdong.dal.blog.domain.BlogContent;
-import com.xdong.dal.common.domain.SysDict;
-import com.xdong.dal.notify.domain.OaNotify;
-import com.xdong.dal.notify.domain.OaNotifyDto;
-import com.xdong.dal.notify.domain.OaNotifyRecord;
+import com.xdong.spi.admin.common.ISysDictService;
+import com.xdong.spi.admin.notify.IOaNotifyRecordService;
+import com.xdong.spi.admin.notify.IOaNotifyService;
+import com.xdong.model.dto.notify.OaNotifyDto;
+import com.xdong.model.entity.common.SysDictDo;
+import com.xdong.model.entity.notify.OaNotifyDo;
+import com.xdong.model.entity.notify.OaNotifyRecordDo;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -45,7 +44,7 @@ public class NotifyController extends BaseController {
 
     @GetMapping()
     @RequiresPermissions("oa:notify:notify")
-    String oaNotify() {
+    String OaNotifyDo() {
         return "oa/notify/notify";
     }
 
@@ -56,7 +55,7 @@ public class NotifyController extends BaseController {
 
         // 查询列表数据
         Query query = new Query(params);
-        Page<OaNotify> page = new Page<OaNotify>(query.getPage(), query.getLimit());
+        Page<OaNotifyDo> page = new Page<OaNotifyDo>(query.getPage(), query.getLimit());
         page.setCondition(convertConditionParam(params));
 
         return notifyService.list(page);
@@ -71,10 +70,10 @@ public class NotifyController extends BaseController {
     @GetMapping("/edit/{id}")
     @RequiresPermissions("oa:notify:edit")
     String edit(@PathVariable("id") Long id, Model model) {
-        OaNotify notify = notifyService.selectById(id);
-        List<SysDict> dictDOS = dictService.listByType("oa_notify_type");
+        OaNotifyDo notify = notifyService.selectById(id);
+        List<SysDictDo> dictDOS = dictService.listByType("oa_notify_type");
         String type = notify.getType();
-        for (SysDict dictDO : dictDOS) {
+        for (SysDictDo dictDO : dictDOS) {
             if (type.equals(dictDO.getValue())) {
                 dictDO.setRemarks("checked");
             }
@@ -108,7 +107,7 @@ public class NotifyController extends BaseController {
     @ResponseBody
     @RequestMapping("/update")
     @RequiresPermissions("oa:notify:edit")
-    public R update(OaNotify notify) {
+    public R update(OaNotifyDo notify) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
             return R.error(1, "演示系统不允许修改,完整体验请部署程序");
         }
@@ -175,9 +174,9 @@ public class NotifyController extends BaseController {
     @GetMapping("/read/{id}")
     @RequiresPermissions("oa:notify:edit")
     String read(@PathVariable("id") Long id, Model model) {
-        OaNotify notify = notifyService.selectById(id);
+        com.xdong.model.entity.notify.OaNotifyDo notify = notifyService.selectById(id);
         // 更改阅读状态
-        OaNotifyRecord notifyRecordDO = new OaNotifyRecord();
+        OaNotifyRecordDo notifyRecordDO = new OaNotifyRecordDo();
         notifyRecordDO.setNotifyId(id);
         notifyRecordDO.setUserId(getUserId());
         notifyRecordDO.setReadDate(new Date());

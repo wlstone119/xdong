@@ -12,59 +12,56 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.plugins.Page;
-import com.xdong.admin.service.common.ISysLogService;
 import com.xdong.common.utils.PageUtils;
 import com.xdong.common.utils.Query;
 import com.xdong.common.utils.R;
-import com.xdong.dal.common.domain.PageDO;
-import com.xdong.dal.common.domain.SysFile;
-import com.xdong.dal.common.domain.SysLog;
-import com.xdong.dal.common.domain.SysTask;
+import com.xdong.model.entity.common.SysLogDo;
+import com.xdong.spi.admin.common.ISysLogService;
 
 @RequestMapping("/common/log")
 @Controller
 public class LogController extends BaseController {
 
-    private static final String prefix = "common/log";
+	private static final String prefix = "common/log";
 
-    @Autowired
-    ISysLogService              logService;
+	@Autowired
+	ISysLogService logService;
 
-    @GetMapping()
-    String log() {
-        return prefix + "/log";
-    }
+	@GetMapping()
+	String log() {
+		return prefix + "/log";
+	}
 
-    @ResponseBody
-    @GetMapping("/list")
-    PageUtils list(@RequestParam Map<String, Object> params) {
+	@ResponseBody
+	@GetMapping("/list")
+	PageUtils list(@RequestParam Map<String, Object> params) {
 
-        // 查询列表数据
-        Query query = new Query(params);
-        Page<SysLog> page = new Page<SysLog>(query.getPage(), query.getLimit());
-        page.setDescs(Arrays.asList("gmt_create"));
-        page.setCondition(convertConditionParam(params));
-        Page<SysLog> result = logService.selectPage(page);
-        PageUtils pageUtils = new PageUtils(result.getRecords(), result.getTotal());
+		// 查询列表数据
+		Query query = new Query(params);
+		Page<SysLogDo> page = new Page<SysLogDo>(query.getPage(), query.getLimit());
+		page.setDescs(Arrays.asList("gmt_create"));
+		page.setCondition(convertConditionParam(params));
+		Page<SysLogDo> result = logService.selectPage(page);
+		PageUtils pageUtils = new PageUtils(result.getRecords(), result.getTotal());
 
-        return pageUtils;
-    }
+		return pageUtils;
+	}
 
-    @ResponseBody
-    @PostMapping("/remove")
-    R remove(Long id) {
-        if (logService.deleteById(id)) {
-            return R.ok();
-        }
-        return R.error();
-    }
+	@ResponseBody
+	@PostMapping("/remove")
+	R remove(Long id) {
+		if (logService.deleteById(id)) {
+			return R.ok();
+		}
+		return R.error();
+	}
 
-    @ResponseBody
-    @PostMapping("/batchRemove")
-    R batchRemove(@RequestParam("ids[]") Long[] ids) {
-        if (logService.deleteBatchIds(Arrays.asList(ids))) {
-            return R.ok();
-        }
-        return R.error();
-    }
+	@ResponseBody
+	@PostMapping("/batchRemove")
+	R batchRemove(@RequestParam("ids[]") Long[] ids) {
+		if (logService.deleteBatchIds(Arrays.asList(ids))) {
+			return R.ok();
+		}
+		return R.error();
+	}
 }
