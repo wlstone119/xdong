@@ -1,8 +1,8 @@
 <script type="text/javascript">
 	function radio(id){
 		$.ajax({
-				url : "/music2/songData",
-				type : "post",
+				url : "/music/songData",
+				type : "get",
 				dataType : "json",
 				data : {
 					songId : id,

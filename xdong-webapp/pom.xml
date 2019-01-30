@@ -28,6 +28,14 @@
 			<artifactId>xdong-music</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>com.xdong</groupId>
+			<artifactId>xdong-crawler</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.xdong</groupId>
+			<artifactId>xdong-idol</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
 		</dependency>

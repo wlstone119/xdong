@@ -43,8 +43,8 @@ public class VelocityConfig {
         resolver.setExposeSpringMacroHelpers(true);
         resolver.setExposeRequestAttributes(true);
         resolver.setRequestContextAttribute("rc");
-        resolver.setDateToolAttribute("dateTool");
-        resolver.setNumberToolAttribute("numberTool");
+        //resolver.setDateToolAttribute("dateTool");
+        //resolver.setNumberToolAttribute("numberTool");
         resolver.setLayoutKey("/layout/default.vm");
         resolver.setLayoutUrl("/layout/default.vm");
         resolver.setScreenContentKey("screen_content");
